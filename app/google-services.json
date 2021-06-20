@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1088461868416",
+    "project_id": "jokex-35a23",
+    "storage_bucket": "jokex-35a23.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1088461868416:android:ef86dbff8d623c85c94565",
+        "android_client_info": {
+          "package_name": "com.sreshtha.jokex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1088461868416-k788hm0t8hshhc18mn18lggfn3r466hg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABV3q9Ip6opySDQAOlmPRX1pn_EvkRW7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1088461868416-k788hm0t8hshhc18mn18lggfn3r466hg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
