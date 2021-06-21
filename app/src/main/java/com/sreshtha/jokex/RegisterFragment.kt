@@ -23,13 +23,7 @@ class RegisterFragment:Fragment(){
 
     lateinit var auth :FirebaseAuth
     lateinit var mainActivity: MainActivity
-
     private lateinit var binding: FragmentRegisterBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
 
     override fun onCreateView(
@@ -127,7 +121,7 @@ class RegisterFragment:Fragment(){
 
 
 
-    fun checkedIfLoggedIn():Boolean{
+    private fun checkedIfLoggedIn():Boolean{
         return auth.currentUser != null
     }
 

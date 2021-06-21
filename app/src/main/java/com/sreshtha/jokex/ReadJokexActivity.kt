@@ -14,8 +14,6 @@ class ReadJokexActivity : AppCompatActivity() {
         val view = binding.root
         setTheme(R.style.Theme_Jokex)
         setContentView(view)
-        
-
 
     }
 }

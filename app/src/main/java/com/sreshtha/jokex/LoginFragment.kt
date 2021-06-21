@@ -1,12 +1,20 @@
 package com.sreshtha.jokex
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.sreshtha.jokex.databinding.FragmentLoginBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 
 class LoginFragment:Fragment(){
@@ -43,11 +51,62 @@ class LoginFragment:Fragment(){
 
 
         binding.btnLogin.setOnClickListener {
-
+            logInUser()
         }
 
 
     }
+
+
+
+
+    private fun logInUser(){
+        val email = binding.etEmail.text.toString()
+        val password = binding.etPassword.text.toString()
+
+        if(email.isNotEmpty() && password.isNotEmpty()){
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+
+                    auth.signInWithEmailAndPassword(email,password).await()
+
+                    withContext(Dispatchers.Main){
+                        if(checkedIfLoggedIn()){
+                            Toast.makeText(
+                                context,
+                                "Success",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            Intent(context,ReadJokexActivity::class.java).also {
+                                startActivity(it)
+                                mainActivity.finish()
+                            }
+                        }
+                    }
+
+                }
+                catch (e:Exception){
+                    Toast.makeText(
+                        context,
+                        e.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
+
+    }
+
+
+
+
+    private fun checkedIfLoggedIn():Boolean{
+        return auth.currentUser != null
+    }
+
+
 
 
 

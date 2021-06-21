@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setTheme(R.style.Theme_Jokex)
         setContentView(view)
-
         auth = FirebaseAuth.getInstance()
         init()
 
@@ -53,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    fun checkedIfLoggedIn():Boolean{
+    private fun checkedIfLoggedIn():Boolean{
         return auth.currentUser != null
     }
 
