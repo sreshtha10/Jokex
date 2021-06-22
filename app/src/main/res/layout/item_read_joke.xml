@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:maxHeight="400dp"
-    android:layout_margin="16dp">
+    android:layout_margin="16dp"
+    android:theme="@style/Theme.Home">
 
     <TextView
         android:id="@+id/tv_item_read_joke_setup"
