@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.sreshtha.jokex.databinding.ActivityHomeBinding
 
@@ -21,9 +22,6 @@ class HomeActivity : AppCompatActivity() {
         drawer = binding.drawerLayout
         setContentView(view)
         init()
-
-
-
 
         val switch = binding.navView.menu.findItem(R.id.nav_theme).actionView as SwitchCompat
         switch.setOnCheckedChangeListener { _, isChecked ->
@@ -42,6 +40,18 @@ class HomeActivity : AppCompatActivity() {
 
         drawer.addDrawerListener(toggle)
         toggle.syncState()
+    }
+
+
+    override fun onBackPressed() {
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START)
+        }
+        else{
+            super.onBackPressed()
+        }
+
+
     }
 
 }
