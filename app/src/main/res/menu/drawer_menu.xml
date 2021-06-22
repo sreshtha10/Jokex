@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view"
 
     >
@@ -17,6 +18,13 @@
             android:id="@+id/nav_write"
             android:icon="@drawable/ic_write"
             android:title="@string/write"
+            />
+
+        <item
+            android:id="@+id/nav_theme"
+            android:icon="@drawable/ic_theme"
+            android:title="Dark Theme"
+            app:actionViewClass="androidx.appcompat.widget.SwitchCompat"
             />
 
     </group>

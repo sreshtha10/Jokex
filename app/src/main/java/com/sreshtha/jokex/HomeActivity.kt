@@ -3,7 +3,8 @@ package com.sreshtha.jokex
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.view.GravityCompat
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.SwitchCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.sreshtha.jokex.databinding.ActivityHomeBinding
 
@@ -21,6 +22,16 @@ class HomeActivity : AppCompatActivity() {
         setContentView(view)
         init()
 
+
+
+
+        val switch = binding.navView.menu.findItem(R.id.nav_theme).actionView as SwitchCompat
+        switch.setOnCheckedChangeListener { _, isChecked ->
+            when(isChecked){
+                true -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                false -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
     }
 
 
