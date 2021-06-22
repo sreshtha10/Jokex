@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+
+    >
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_read"
+            android:title="@string/read"
+            android:icon="@drawable/ic_read"
+        />
+
+        <item
+            android:id="@+id/nav_write"
+            android:icon="@drawable/ic_write"
+            android:title="@string/write"
+            />
+
+    </group>
+
+
+    <item android:title="@string/about">
+
+        <menu>
+            <item
+                android:id="@+id/nav_source_code"
+                android:icon="@drawable/ic_source_code"
+                android:title="@string/source_code"/>
+
+        </menu>
+    </item>
+
+</menu>

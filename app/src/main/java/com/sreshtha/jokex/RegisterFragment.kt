@@ -55,7 +55,7 @@ class RegisterFragment:Fragment(){
         binding.btnRegister.setOnClickListener {
             registerUser()
             if(checkedIfLoggedIn()){
-                Intent(context,ReadJokexActivity::class.java).also{
+                Intent(context,HomeActivity::class.java).also{
                     startActivity(it)
                     mainActivity.finish()
                 }

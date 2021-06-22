@@ -10,4 +10,10 @@
     <string name="register">Register</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="already_have_an_account_log_in"><u>Already have an account? Log In</u></string>
+    <string name="read">Read</string>
+    <string name="write">Write</string>
+    <string name="source_code">Source Code</string>
+    <string name="about">About</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">CloseNavigation Drawer</string>
 </resources>

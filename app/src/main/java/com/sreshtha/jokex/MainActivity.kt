@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         // set up log in fragment first at start of the Main activity
 
         if(checkedIfLoggedIn()){
-            Intent(this,ReadJokexActivity::class.java).also{
+            Intent(this,HomeActivity::class.java).also{
                 startActivity(it)
                 finish()
             }

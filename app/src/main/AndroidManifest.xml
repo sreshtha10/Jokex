@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/splashScreenTheme">
-        <activity android:name=".ReadJokexActivity"></activity>
+        <activity android:name=".HomeActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.Home"
+            >
+        </activity>
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize">

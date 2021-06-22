@@ -17,10 +17,10 @@ import kotlinx.coroutines.withContext
 import java.lang.Exception
 
 
-class LoginFragment:Fragment(){
+class LoginFragment:Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private lateinit var  mainActivity: MainActivity
+    private lateinit var mainActivity: MainActivity
     lateinit var auth: FirebaseAuth
 
 
@@ -30,7 +30,7 @@ class LoginFragment:Fragment(){
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentLoginBinding.inflate(inflater, container,false)
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
         mainActivity = activity as MainActivity
         auth = mainActivity.auth
         return binding.root
@@ -44,7 +44,7 @@ class LoginFragment:Fragment(){
         binding.tvGotoSignup.setOnClickListener {
             val registerFragment = RegisterFragment()
             parentFragmentManager.beginTransaction().apply {
-                replace(R.id.flFragments,registerFragment)
+                replace(R.id.flFragments, registerFragment)
                 commit()
             }
         }
@@ -58,61 +58,52 @@ class LoginFragment:Fragment(){
     }
 
 
-
-
-    private fun logInUser(){
+    private fun logInUser() {
         val email = binding.etEmail.text.toString()
         val password = binding.etPassword.text.toString()
 
-        if(email.isNotEmpty() && password.isNotEmpty()){
+        if (email.isNotEmpty() && password.isNotEmpty()) {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
 
-                    auth.signInWithEmailAndPassword(email,password).await()
+                    auth.signInWithEmailAndPassword(email, password).await()
 
-                    withContext(Dispatchers.Main){
-                        if(checkedIfLoggedIn()){
+                    withContext(Dispatchers.Main) {
+                        if (checkedIfLoggedIn()) {
                             Toast.makeText(
                                 context,
                                 "Success",
                                 Toast.LENGTH_SHORT
                             ).show()
 
-                            Intent(context,ReadJokexActivity::class.java).also {
+                            Intent(context, HomeActivity::class.java).also {
                                 startActivity(it)
                                 mainActivity.finish()
                             }
                         }
                     }
 
-                }
-                catch (e:Exception){
-                    Toast.makeText(
-                        context,
-                        e.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            context,
+                            e.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             }
+
+
         }
 
 
     }
 
 
-
-
-    private fun checkedIfLoggedIn():Boolean{
+    private fun checkedIfLoggedIn(): Boolean {
         return auth.currentUser != null
     }
-
-
-
-
-
-
-
-
 
 
 
