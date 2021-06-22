@@ -1,3 +1,14 @@
+/*
+
+Description: MainActivity.kt is a launch activity responsible for handling user login and sign-ups(registrations).
+It uses two fragments - LoginFragment.kt and RegisterFragment.kt
+
+Once, the login or registration (using Firebase) is complete, the HomeActivity.kt is launched.
+
+ */
+
+
+
 package com.sreshtha.jokex
 
 import android.content.Intent
@@ -37,8 +48,6 @@ class MainActivity : AppCompatActivity() {
 
         val loginFragment = LoginFragment()
         setFragments(loginFragment)
-
-
 
     }
 

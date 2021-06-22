@@ -1,4 +1,14 @@
+/*
+
+    HomeActivity.kt uses two fragments - ReadFragment.kt and WriteFragment.kt
+
+ */
+
+
+
+
 package com.sreshtha.jokex
+
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +17,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import com.sreshtha.jokex.databinding.ActivityHomeBinding
 
 
@@ -21,6 +32,8 @@ class HomeActivity : AppCompatActivity() {
         val view = binding.root
         drawer = binding.drawerLayout
         setContentView(view)
+
+
         init()
 
         val switch = binding.navView.menu.findItem(R.id.nav_theme).actionView as SwitchCompat
@@ -29,6 +42,34 @@ class HomeActivity : AppCompatActivity() {
                 true -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 false -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
+        }
+
+        val readFragment = ReadFragment()
+        val writeFragment = WriteFragment()
+
+        binding.navView.menu.findItem(R.id.nav_read).setOnMenuItemClickListener {
+
+            setFragments(readFragment)
+            true
+        }
+
+
+        binding.navView.menu.findItem(R.id.nav_write).setOnMenuItemClickListener {
+
+            setFragments(writeFragment)
+            true
+        }
+
+    }
+
+
+
+    override fun onBackPressed() {
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START)
+        }
+        else{
+            super.onBackPressed()
         }
     }
 
@@ -40,18 +81,23 @@ class HomeActivity : AppCompatActivity() {
 
         drawer.addDrawerListener(toggle)
         toggle.syncState()
+
+        val readFragment = ReadFragment()
+        setFragments(readFragment)
     }
 
 
-    override fun onBackPressed() {
-        if(drawer.isDrawerOpen(GravityCompat.START)){
-            drawer.closeDrawer(GravityCompat.START)
+    private fun setFragments(fragment: Fragment){
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fl_home,fragment)
+            commit()
         }
-        else{
-            super.onBackPressed()
-        }
-
-
     }
+
+
+
+
+
+
 
 }

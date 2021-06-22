@@ -16,4 +16,5 @@
     <string name="about">About</string>
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">CloseNavigation Drawer</string>
+    <string name="refresh">Refresh</string>
 </resources>

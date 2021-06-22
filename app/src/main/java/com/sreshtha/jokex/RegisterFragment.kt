@@ -1,3 +1,11 @@
+/*
+    RegisterFragment.kt is responsible for handling user-registrations using FirebaseAuth.
+    It is a fragment created for MainActivity.kt
+
+ */
+
+
+
 package com.sreshtha.jokex
 
 import android.content.Intent
