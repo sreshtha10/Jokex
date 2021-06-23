@@ -10,6 +10,7 @@
 package com.sreshtha.jokex
 
 
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -84,6 +85,14 @@ class HomeActivity : AppCompatActivity() {
 
         val readFragment = ReadFragment()
         setFragments(readFragment)
+
+
+        when (this.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+                (binding.navView.menu.findItem(R.id.nav_theme).actionView as SwitchCompat).isChecked = true
+            }
+        }
+
     }
 
 

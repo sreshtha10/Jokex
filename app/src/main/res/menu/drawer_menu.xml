@@ -21,19 +21,18 @@
             android:title="@string/write"
             />
 
-        <item
-            android:id="@+id/nav_theme"
-            android:icon="@drawable/ic_theme"
-            android:title="Dark Theme"
-            app:actionViewClass="androidx.appcompat.widget.SwitchCompat"
-            />
-
     </group>
 
 
-    <item android:title="@string/about">
+    <item android:title="@string/settings">
 
         <menu>
+            <item
+                android:id="@+id/nav_theme"
+                android:icon="@drawable/ic_theme"
+                android:title="Dark Theme"
+                app:actionViewClass="androidx.appcompat.widget.SwitchCompat"
+                />
             <item
                 android:id="@+id/nav_source_code"
                 android:icon="@drawable/ic_source_code"
