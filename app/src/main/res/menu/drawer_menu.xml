@@ -30,13 +30,20 @@
             <item
                 android:id="@+id/nav_theme"
                 android:icon="@drawable/ic_theme"
-                android:title="Dark Theme"
+                android:title="@string/dark_theme"
                 app:actionViewClass="androidx.appcompat.widget.SwitchCompat"
                 />
             <item
                 android:id="@+id/nav_source_code"
                 android:icon="@drawable/ic_source_code"
                 android:title="@string/source_code"/>
+
+            <item
+                android:id="@+id/nav_signout"
+                android:title="@string/log_out"
+                android:icon="@drawable/ic_signout"
+                />
+
 
         </menu>
     </item>

@@ -10,6 +10,7 @@
 package com.sreshtha.jokex
 
 
+import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,11 +20,14 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 import com.sreshtha.jokex.databinding.ActivityHomeBinding
 
 
 class HomeActivity : AppCompatActivity() {
 
+
+    private lateinit var auth:FirebaseAuth
     private lateinit var binding: ActivityHomeBinding
     private lateinit var drawer: DrawerLayout
 
@@ -61,6 +65,17 @@ class HomeActivity : AppCompatActivity() {
             true
         }
 
+
+        binding.navView.menu.findItem(R.id.nav_signout).setOnMenuItemClickListener {
+
+            FirebaseAuth.getInstance().signOut()
+            Intent(this,MainActivity::class.java).also {
+                startActivity(it)
+                finish()
+            }
+            true
+        }
+
     }
 
 
@@ -92,6 +107,7 @@ class HomeActivity : AppCompatActivity() {
                 (binding.navView.menu.findItem(R.id.nav_theme).actionView as SwitchCompat).isChecked = true
             }
         }
+
 
     }
 
