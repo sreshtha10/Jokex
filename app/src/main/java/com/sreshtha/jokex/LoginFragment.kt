@@ -24,7 +24,7 @@ import kotlinx.coroutines.withContext
 import java.lang.Exception
 
 
-class LoginFragment:Fragment() {
+class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private lateinit var mainActivity: MainActivity
@@ -111,7 +111,6 @@ class LoginFragment:Fragment() {
     private fun checkedIfLoggedIn(): Boolean {
         return auth.currentUser != null
     }
-
 
 
 }

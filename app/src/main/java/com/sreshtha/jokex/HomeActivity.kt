@@ -21,15 +21,21 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.sreshtha.jokex.databinding.ActivityHomeBinding
 
 
 class HomeActivity : AppCompatActivity() {
 
 
-    private lateinit var auth:FirebaseAuth
     private lateinit var binding: ActivityHomeBinding
     private lateinit var drawer: DrawerLayout
+
+
+    private lateinit var storage: FirebaseStorage
+    private lateinit var storageReference: StorageReference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +45,16 @@ class HomeActivity : AppCompatActivity() {
         setContentView(view)
 
 
+        storage = FirebaseStorage.getInstance()
+        storageReference = storage.reference
+
+
+
         init()
 
         val switch = binding.navView.menu.findItem(R.id.nav_theme).actionView as SwitchCompat
         switch.setOnCheckedChangeListener { _, isChecked ->
-            when(isChecked){
+            when (isChecked) {
                 true -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 false -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
@@ -69,31 +80,37 @@ class HomeActivity : AppCompatActivity() {
         binding.navView.menu.findItem(R.id.nav_signout).setOnMenuItemClickListener {
 
             FirebaseAuth.getInstance().signOut()
-            Intent(this,MainActivity::class.java).also {
+            Intent(this, MainActivity::class.java).also {
                 startActivity(it)
                 finish()
             }
             true
         }
 
+
     }
 
 
-
     override fun onBackPressed() {
-        if(drawer.isDrawerOpen(GravityCompat.START)){
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
-        }
-        else{
+        } else {
             super.onBackPressed()
         }
     }
 
 
-    private fun init(){
+    private fun init() {
+
         val toolbar = binding.toolBar
         setSupportActionBar(toolbar)
-        val toggle = ActionBarDrawerToggle(this,drawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close)
+        val toggle = ActionBarDrawerToggle(
+            this,
+            drawer,
+            toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
 
         drawer.addDrawerListener(toggle)
         toggle.syncState()
@@ -102,9 +119,11 @@ class HomeActivity : AppCompatActivity() {
         setFragments(readFragment)
 
 
+
         when (this.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
             Configuration.UI_MODE_NIGHT_YES -> {
-                (binding.navView.menu.findItem(R.id.nav_theme).actionView as SwitchCompat).isChecked = true
+                (binding.navView.menu.findItem(R.id.nav_theme).actionView as SwitchCompat).isChecked =
+                    true
             }
         }
 
@@ -112,17 +131,12 @@ class HomeActivity : AppCompatActivity() {
     }
 
 
-    private fun setFragments(fragment: Fragment){
+    private fun setFragments(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fl_home,fragment)
+            replace(R.id.fl_home, fragment)
             commit()
         }
     }
-
-
-
-
-
 
 
 }

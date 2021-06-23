@@ -1,4 +1,3 @@
-
 /*
     Adapter for Recycler View
  */
@@ -12,12 +11,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sreshtha.jokex.databinding.ItemReadJokeBinding
 
-class JokesAdapter:RecyclerView.Adapter<JokesAdapter.JokesViewHolder>() {
+class JokesAdapter : RecyclerView.Adapter<JokesAdapter.JokesViewHolder>() {
 
-    inner class JokesViewHolder(val binding:ItemReadJokeBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class JokesViewHolder(val binding: ItemReadJokeBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
 
-    private val diffCallBack = object : DiffUtil.ItemCallback<JokeData>(){
+    private val diffCallBack = object : DiffUtil.ItemCallback<JokeData>() {
         override fun areItemsTheSame(oldItem: JokeData, newItem: JokeData): Boolean {
             return oldItem.id == newItem.id
 
@@ -28,24 +28,24 @@ class JokesAdapter:RecyclerView.Adapter<JokesAdapter.JokesViewHolder>() {
         }
     }
 
-    private val differ = AsyncListDiffer(this,diffCallBack)
+    private val differ = AsyncListDiffer(this, diffCallBack)
 
 
-    var jokesList : List<JokeData>
+    var jokesList: List<JokeData>
         get() = differ.currentList
-        set(value) {differ.submitList(value)}
-
-
-
-
+        set(value) {
+            differ.submitList(value)
+        }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JokesViewHolder {
-        return JokesViewHolder(ItemReadJokeBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        ))
+        return JokesViewHolder(
+            ItemReadJokeBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: JokesViewHolder, position: Int) {

@@ -19,7 +19,7 @@ import retrofit2.HttpException
 import java.io.IOException
 
 
-class ReadFragment : Fragment(){
+class ReadFragment : Fragment() {
 
     private lateinit var binding: FragmentReadBinding
 
@@ -30,7 +30,7 @@ class ReadFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentReadBinding.inflate(inflater,container,false)
+        binding = FragmentReadBinding.inflate(inflater, container, false)
         jokesAdapter = JokesAdapter()
         return binding.root
     }
@@ -58,25 +58,23 @@ class ReadFragment : Fragment(){
     }
 
 
-    private fun fetchFromApi(){
+    private fun fetchFromApi() {
 
         lifecycleScope.launchWhenCreated {
-            binding.progressCircular.isVisible =true
-            val response = try{
+            binding.progressCircular.isVisible = true
+            val response = try {
                 RetrofitInstance.api.getJokes()
-            }
-            catch (e:IOException){
-                Log.e("ErrorInRetrofit","You might not have internet connection")
+            } catch (e: IOException) {
+                Log.e("ErrorInRetrofit", "You might not have internet connection")
                 binding.progressCircular.isVisible = false
                 return@launchWhenCreated
-            }
-            catch (e:HttpException){
-                Log.e("ErrorInRetrofit","Unexpected Response")
+            } catch (e: HttpException) {
+                Log.e("ErrorInRetrofit", "Unexpected Response")
                 binding.progressCircular.isVisible = false
                 return@launchWhenCreated
             }
 
-            if(response.isSuccessful && response.body() != null){
+            if (response.isSuccessful && response.body() != null) {
                 jokesAdapter.jokesList = response.body()!!
                 binding.progressCircular.isVisible = false
             }

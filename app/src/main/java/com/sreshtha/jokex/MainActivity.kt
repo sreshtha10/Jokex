@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    lateinit var auth:FirebaseAuth
+    lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,11 +36,11 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun init(){
+    private fun init() {
         // set up log in fragment first at start of the Main activity
 
-        if(checkedIfLoggedIn()){
-            Intent(this,HomeActivity::class.java).also{
+        if (checkedIfLoggedIn()) {
+            Intent(this, HomeActivity::class.java).also {
                 startActivity(it)
                 finish()
             }
@@ -52,20 +52,17 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun setFragments(fragment:Fragment){
+    private fun setFragments(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.flFragments,fragment)
+            replace(R.id.flFragments, fragment)
             commit()
         }
     }
 
 
-
-    private fun checkedIfLoggedIn():Boolean{
+    private fun checkedIfLoggedIn(): Boolean {
         return auth.currentUser != null
     }
-
-
 
 
 }

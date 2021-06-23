@@ -10,6 +10,6 @@ import retrofit2.http.GET
 interface JokesApi {
 
     @GET("/random_ten")
-    suspend  fun getJokes() : Response<List<JokeData>>
+    suspend fun getJokes(): Response<List<JokeData>>
 
 }

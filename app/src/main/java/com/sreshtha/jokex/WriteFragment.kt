@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.sreshtha.jokex.databinding.FragmentWriteBinding
 
-class WriteFragment : Fragment(){
+class WriteFragment : Fragment() {
 
     private lateinit var binding: FragmentWriteBinding
 
@@ -22,7 +22,7 @@ class WriteFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentWriteBinding.inflate(inflater,container,false)
+        binding = FragmentWriteBinding.inflate(inflater, container, false)
         return binding.root
 
     }

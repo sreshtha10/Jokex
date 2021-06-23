@@ -25,11 +25,10 @@ import kotlinx.coroutines.withContext
 import java.lang.Exception
 
 
-class RegisterFragment:Fragment(){
+class RegisterFragment : Fragment() {
 
 
-
-    lateinit var auth :FirebaseAuth
+    lateinit var auth: FirebaseAuth
     lateinit var mainActivity: MainActivity
     private lateinit var binding: FragmentRegisterBinding
 
@@ -39,7 +38,7 @@ class RegisterFragment:Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentRegisterBinding.inflate(inflater,container,false)
+        binding = FragmentRegisterBinding.inflate(inflater, container, false)
         mainActivity = activity as MainActivity
         auth = mainActivity.auth
 
@@ -54,7 +53,7 @@ class RegisterFragment:Fragment(){
 
         binding.tvGotoLogin.setOnClickListener {
             parentFragmentManager.beginTransaction().apply {
-                replace(R.id.flFragments,loginFragment)
+                replace(R.id.flFragments, loginFragment)
                 commit()
             }
         }
@@ -62,8 +61,8 @@ class RegisterFragment:Fragment(){
 
         binding.btnRegister.setOnClickListener {
             registerUser()
-            if(checkedIfLoggedIn()){
-                Intent(context,HomeActivity::class.java).also{
+            if (checkedIfLoggedIn()) {
+                Intent(context, HomeActivity::class.java).also {
                     startActivity(it)
                     mainActivity.finish()
                 }
@@ -72,24 +71,25 @@ class RegisterFragment:Fragment(){
         }
 
 
-
     }
 
 
-    private fun registerUser(){
+    private fun registerUser() {
         val email = binding.etEmailRegister.text.toString()
         val password = binding.etPasswordRegister.text.toString()
-        val confirmPassword= binding.etConfirmPasswordRegister.text.toString()
+        val confirmPassword = binding.etConfirmPasswordRegister.text.toString()
 
-        if(email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty() && password.equals(confirmPassword)){
+        if (email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty() && password.equals(
+                confirmPassword
+            )
+        ) {
             CoroutineScope(Dispatchers.IO).launch {
-                try{
-                    auth.createUserWithEmailAndPassword(email,password).await()
-                    withContext(Dispatchers.Main){
-                        if(checkedIfLoggedIn()){
+                try {
+                    auth.createUserWithEmailAndPassword(email, password).await()
+                    withContext(Dispatchers.Main) {
+                        if (checkedIfLoggedIn()) {
 
-                        }
-                        else{
+                        } else {
                             Toast.makeText(
                                 context,
                                 "Failed",
@@ -97,9 +97,8 @@ class RegisterFragment:Fragment(){
                             ).show()
                         }
                     }
-                }
-                catch (e:Exception){
-                    withContext(Dispatchers.Main){
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
                         Toast.makeText(
                             context,
                             e.message,
@@ -108,16 +107,14 @@ class RegisterFragment:Fragment(){
                     }
                 }
             }
-        }
-        else if(email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
+        } else if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
 
             Toast.makeText(
                 context,
                 "Empty fields !",
                 Toast.LENGTH_SHORT
             ).show()
-        }
-        else{
+        } else {
             Toast.makeText(
                 context,
                 "Passwords do not match !",
@@ -127,17 +124,9 @@ class RegisterFragment:Fragment(){
     }
 
 
-
-
-    private fun checkedIfLoggedIn():Boolean{
+    private fun checkedIfLoggedIn(): Boolean {
         return auth.currentUser != null
     }
-
-
-
-
-
-
 
 
 }
