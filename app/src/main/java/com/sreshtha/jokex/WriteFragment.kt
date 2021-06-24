@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -36,6 +37,8 @@ class WriteFragment : Fragment() {
 
     private lateinit var readRef: DatabaseReference
 
+    private lateinit var writeAdapter: WriteAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,6 +52,8 @@ class WriteFragment : Fragment() {
 
 
         binding = FragmentWriteBinding.inflate(inflater, container, false)
+
+        writeAdapter = WriteAdapter()
         return binding.root
 
     }
@@ -59,6 +64,8 @@ class WriteFragment : Fragment() {
 
 
         readRef.addValueEventListener(readJokesListener)
+
+        setUpRecyclerView()
 
 
         binding.btnAddJoke.setOnClickListener {
@@ -133,6 +140,14 @@ class WriteFragment : Fragment() {
         }
 
     }
+
+
+
+    private fun setUpRecyclerView() = binding.rvMyJokes.apply {
+        adapter = writeAdapter
+        layoutManager = LinearLayoutManager(activity)
+    }
+
 
 
 }
