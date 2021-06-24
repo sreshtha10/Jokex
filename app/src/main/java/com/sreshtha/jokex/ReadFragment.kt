@@ -21,8 +21,8 @@ import java.io.IOException
 
 class ReadFragment : Fragment() {
 
+    // global variables.
     private lateinit var binding: FragmentReadBinding
-
     private lateinit var jokesAdapter: JokesAdapter
 
     override fun onCreateView(
@@ -58,6 +58,7 @@ class ReadFragment : Fragment() {
     }
 
 
+    // function to fetch data from API
     private fun fetchFromApi() {
 
         lifecycleScope.launchWhenCreated {

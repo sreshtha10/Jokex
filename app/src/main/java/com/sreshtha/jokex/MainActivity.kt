@@ -20,16 +20,21 @@ import com.sreshtha.jokex.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
 
+    //global variables
+    private lateinit var binding: ActivityMainBinding
     lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
+
+        //setting theme to Theme.Jokex to end splash screen.
         setTheme(R.style.Theme_Jokex)
         setContentView(view)
+
         auth = FirebaseAuth.getInstance()
         init()
 
@@ -37,8 +42,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun init() {
-        // set up log in fragment first at start of the Main activity
-
+        // if user is already logged in, start the home activity directly.
         if (checkedIfLoggedIn()) {
             Intent(this, HomeActivity::class.java).also {
                 startActivity(it)
@@ -46,12 +50,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        //else displaying the login fragment in main activity
         val loginFragment = LoginFragment()
         setFragments(loginFragment)
 
     }
 
 
+    //function to switch between register and login fragment in main activity
     private fun setFragments(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.flFragments, fragment)
@@ -60,6 +66,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    //function to check the logged in state of the user.
     private fun checkedIfLoggedIn(): Boolean {
         return auth.currentUser != null
     }

@@ -26,8 +26,8 @@ import java.lang.Exception
 
 class LoginFragment : Fragment() {
 
+    //global variables
     private lateinit var binding: FragmentLoginBinding
-    private lateinit var mainActivity: MainActivity
     lateinit var auth: FirebaseAuth
 
 
@@ -38,8 +38,9 @@ class LoginFragment : Fragment() {
     ): View? {
 
         binding = FragmentLoginBinding.inflate(inflater, container, false)
-        mainActivity = activity as MainActivity
-        auth = mainActivity.auth
+
+        // getting firebase auth instance
+        auth = FirebaseAuth.getInstance()
         return binding.root
     }
 
@@ -48,6 +49,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        // this switches to sign up (register) fragment
         binding.tvGotoSignup.setOnClickListener {
             val registerFragment = RegisterFragment()
             parentFragmentManager.beginTransaction().apply {
@@ -56,7 +58,7 @@ class LoginFragment : Fragment() {
             }
         }
 
-
+        // getting user logged in
         binding.btnLogin.setOnClickListener {
             logInUser()
         }
@@ -65,6 +67,7 @@ class LoginFragment : Fragment() {
     }
 
 
+    // function to handle the log in of the user
     private fun logInUser() {
         val email = binding.etEmail.text.toString()
         val password = binding.etPassword.text.toString()
@@ -83,9 +86,10 @@ class LoginFragment : Fragment() {
                                 Toast.LENGTH_SHORT
                             ).show()
 
+                            //on successful log in, starting the home activity
                             Intent(context, HomeActivity::class.java).also {
                                 startActivity(it)
-                                mainActivity.finish()
+                                activity?.finish()
                             }
                         }
                     }
@@ -102,12 +106,17 @@ class LoginFragment : Fragment() {
             }
 
 
+        } else {
+            Toast.makeText(
+                activity,
+                "Empty Fields",
+                Toast.LENGTH_SHORT
+            ).show()
         }
-
 
     }
 
-
+    //function to the check the logged in state of the user.
     private fun checkedIfLoggedIn(): Boolean {
         return auth.currentUser != null
     }

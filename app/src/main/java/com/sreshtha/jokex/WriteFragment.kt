@@ -103,7 +103,7 @@ class WriteFragment : Fragment() {
                     Toast.makeText(
                         activity,
                         msg,
-                        Toast.LENGTH_LONG
+                        Toast.LENGTH_SHORT
                     ).show()
                 }
 
@@ -113,7 +113,7 @@ class WriteFragment : Fragment() {
                     Toast.makeText(
                         activity,
                         e.message,
-                        Toast.LENGTH_LONG
+                        Toast.LENGTH_SHORT
                     ).show()
                 }
             }

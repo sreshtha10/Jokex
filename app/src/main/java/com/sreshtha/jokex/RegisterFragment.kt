@@ -28,8 +28,7 @@ import java.lang.Exception
 class RegisterFragment : Fragment() {
 
 
-    lateinit var auth: FirebaseAuth
-    lateinit var mainActivity: MainActivity
+    private lateinit var auth: FirebaseAuth
     private lateinit var binding: FragmentRegisterBinding
 
 
@@ -39,8 +38,9 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
-        mainActivity = activity as MainActivity
-        auth = mainActivity.auth
+
+        // getting firebase auth instance
+        auth = FirebaseAuth.getInstance()
 
         return binding.root
 
@@ -51,6 +51,7 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val loginFragment = LoginFragment()
 
+        // switching to log in fragment when user clicks tvGotoLogin
         binding.tvGotoLogin.setOnClickListener {
             parentFragmentManager.beginTransaction().apply {
                 replace(R.id.flFragments, loginFragment)
@@ -59,12 +60,13 @@ class RegisterFragment : Fragment() {
         }
 
 
+        // registering user when user clicks btnRegister.
         binding.btnRegister.setOnClickListener {
             registerUser()
             if (checkedIfLoggedIn()) {
                 Intent(context, HomeActivity::class.java).also {
                     startActivity(it)
-                    mainActivity.finish()
+                    activity?.finish()
                 }
             }
 
@@ -74,6 +76,7 @@ class RegisterFragment : Fragment() {
     }
 
 
+    // function to handle the registration of the user
     private fun registerUser() {
         val email = binding.etEmailRegister.text.toString()
         val password = binding.etPasswordRegister.text.toString()
@@ -87,9 +90,7 @@ class RegisterFragment : Fragment() {
                 try {
                     auth.createUserWithEmailAndPassword(email, password).await()
                     withContext(Dispatchers.Main) {
-                        if (checkedIfLoggedIn()) {
-
-                        } else {
+                        if (!checkedIfLoggedIn()) {
                             Toast.makeText(
                                 context,
                                 "Failed",
@@ -124,6 +125,7 @@ class RegisterFragment : Fragment() {
     }
 
 
+    // function to check the logged in state of the user.
     private fun checkedIfLoggedIn(): Boolean {
         return auth.currentUser != null
     }

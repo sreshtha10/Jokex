@@ -1,3 +1,7 @@
+/*
+    Adapter for recycler view in the write fragment layout.
+ */
+
 package com.sreshtha.jokex
 
 import android.view.LayoutInflater
@@ -54,9 +58,8 @@ class WriteAdapter(val jokesList: MutableList<UserJoke>) : RecyclerView.Adapter<
             tvItemWriteJokeSetup.text = joke.setup
             tvItemWriteJokePunchline.text = joke.punchline
 
+            // deleting data from recycler view plus the database when delete icon is clicked.
             ivDeleteJoke.setOnClickListener {
-                val setup = tvItemWriteJokeSetup.text.toString()
-                val punchline = tvItemWriteJokePunchline.text.toString()
                 readRef.child(joke.jokeId).removeValue()
                 val pos = jokesList.indexOf(joke)
                 jokesList.removeAt(pos)

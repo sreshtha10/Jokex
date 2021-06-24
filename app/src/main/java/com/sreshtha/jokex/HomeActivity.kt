@@ -12,12 +12,8 @@ package com.sreshtha.jokex
 
 import android.content.Intent
 import android.content.res.Configuration
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
@@ -25,23 +21,13 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.UserProfileChangeRequest
 import com.sreshtha.jokex.databinding.ActivityHomeBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
-import java.lang.Exception
-
 
 class HomeActivity : AppCompatActivity() {
 
-
+    //global variables
     private lateinit var binding: ActivityHomeBinding
     private lateinit var drawer: DrawerLayout
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +39,7 @@ class HomeActivity : AppCompatActivity() {
 
         init()
 
+        // changing the theme when user checks or unchecks nav_theme switch.
         val switch = binding.navView.menu.findItem(R.id.nav_theme).actionView as SwitchCompat
         switch.setOnCheckedChangeListener { _, isChecked ->
             when (isChecked) {
@@ -64,6 +51,7 @@ class HomeActivity : AppCompatActivity() {
         val readFragment = ReadFragment()
         val writeFragment = WriteFragment()
 
+        //loading read fragment
         binding.navView.menu.findItem(R.id.nav_read).setOnMenuItemClickListener {
 
             setFragments(readFragment)
@@ -71,6 +59,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
 
+        //loading write fragment
         binding.navView.menu.findItem(R.id.nav_write).setOnMenuItemClickListener {
 
             setFragments(writeFragment)
@@ -78,6 +67,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
 
+        //signing out user when user clicks nav_signout
         binding.navView.menu.findItem(R.id.nav_signout).setOnMenuItemClickListener {
 
             FirebaseAuth.getInstance().signOut()
@@ -91,6 +81,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
 
+    // if drawer is open and user presses back, drawer should get closed.
     override fun onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
@@ -100,9 +91,11 @@ class HomeActivity : AppCompatActivity() {
     }
 
 
+    // function to initialise the activity
     private fun init() {
 
 
+        // creating and setting up the toolbar
         val toolbar = binding.toolBar
         setSupportActionBar(toolbar)
         val toggle = ActionBarDrawerToggle(
@@ -120,7 +113,7 @@ class HomeActivity : AppCompatActivity() {
         setFragments(readFragment)
 
 
-
+        // checking if the app starts in dark theme or light theme.
         when (this.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
             Configuration.UI_MODE_NIGHT_YES -> {
                 (binding.navView.menu.findItem(R.id.nav_theme).actionView as SwitchCompat).isChecked =
@@ -131,6 +124,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
 
+    // function to switch fragments.
     private fun setFragments(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fl_home, fragment)
