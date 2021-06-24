@@ -95,6 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_add_joke" />
 
 
+    <!--
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_my_jokes"
         android:layout_width="match_parent"
@@ -110,6 +111,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontal_rule" />
+
+        -->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
