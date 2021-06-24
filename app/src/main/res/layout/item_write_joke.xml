@@ -41,6 +41,8 @@
     <ImageView
         android:id="@+id/iv_delete_joke"
         android:layout_width="30dp"
+        android:clickable="true"
+        android:focusable="true"
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/ic_delete"

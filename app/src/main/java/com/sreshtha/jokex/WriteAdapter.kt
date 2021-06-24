@@ -5,9 +5,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.sreshtha.jokex.databinding.ItemWriteJokeBinding
 
 class WriteAdapter(val jokesList: MutableList<UserJoke>) : RecyclerView.Adapter<WriteAdapter.WriteViewHolder>() {
+
+
+    private var readRef: DatabaseReference =
+        Firebase.database("https://jokex-35a23-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            .getReference("user_jokes/${FirebaseAuth.getInstance().currentUser?.uid}")
+
 
     inner class WriteViewHolder(val binding:ItemWriteJokeBinding):RecyclerView.ViewHolder(binding.root)
 
@@ -38,16 +48,28 @@ class WriteAdapter(val jokesList: MutableList<UserJoke>) : RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: WriteViewHolder, position: Int) {
+
         holder.binding.apply {
             val joke = jokesList[position]
             tvItemWriteJokeSetup.text = joke.setup
             tvItemWriteJokePunchline.text = joke.punchline
+
+            ivDeleteJoke.setOnClickListener {
+                val setup = tvItemWriteJokeSetup.text.toString()
+                val punchline = tvItemWriteJokePunchline.text.toString()
+
+
+                // delete joke
+
+
+            }
         }
     }
 
     override fun getItemCount(): Int {
         return jokesList.size
     }
+
 
 
 }

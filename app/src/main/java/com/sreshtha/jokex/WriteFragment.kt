@@ -79,12 +79,17 @@ class WriteFragment : Fragment() {
 
 
     private fun writeJokeToCloud(setup: String, punchline: String) {
-        val joke = UserJoke(setup, punchline)
         val uid = FirebaseAuth.getInstance().currentUser?.uid
         var msg = "failed"
+
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                database.child("user_jokes/$uid").push().setValue(joke)
+                val jokeId = database.child("user_jokes/$uid").push().key
+                val joke = UserJoke(jokeId!!,setup, punchline)
+
+
+
+                database.child("user_jokes/$uid/${joke.jokeId}").setValue(joke)
                     .addOnSuccessListener {
                         msg = "success"
                     }
@@ -126,15 +131,6 @@ class WriteFragment : Fragment() {
                     jokeList.add(joke)
                     writeAdapter.notifyItemInserted(jokeList.size-1)
                 }
-
-                /*
-                Toast.makeText(
-                    activity,
-                    jokeList.toString(),
-                    Toast.LENGTH_LONG
-                ).show()
-                 */
-
 
             }
         }
