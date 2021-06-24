@@ -128,8 +128,11 @@ class WriteFragment : Fragment() {
                 val joke = dataSnapshot.child("$key").getValue(UserJoke::class.java)
 
                 if(joke != null){
-                    jokeList.add(joke)
-                    writeAdapter.notifyItemInserted(jokeList.size-1)
+                    if(jokeList.indexOf(joke) == -1){
+                        jokeList.add(joke)
+                        clearFields()
+                        writeAdapter.notifyItemInserted(jokeList.size-1)
+                    }
                 }
 
             }
@@ -146,6 +149,12 @@ class WriteFragment : Fragment() {
     private fun setUpRecyclerView() = binding.rvMyJokes.apply {
         adapter = writeAdapter
         layoutManager = LinearLayoutManager(activity)
+    }
+
+
+    private fun clearFields(){
+        binding.etJokeSetup.text?.clear()
+        binding.etJokePunchline.text?.clear()
     }
 
 
