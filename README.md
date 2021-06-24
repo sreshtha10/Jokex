@@ -50,7 +50,19 @@ ___
   * [Gson](https://github.com/google/gson)
   * [Jokes API](https://github.com/15Dkatz/official_joke_api)
 
+___
 
+
+## Compatibilty 
+
+Android (API level 16) and higher
+
+
+___
+
+
+##Licensing
+JOKEX is licensed under the Apache License, Version 2.0. See (LICENSE)[https://github.com/sreshtha10/Jokex/blob/master/LICENSE] for the full license text.
 
 
 
