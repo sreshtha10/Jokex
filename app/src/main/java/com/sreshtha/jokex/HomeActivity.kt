@@ -12,6 +12,7 @@ package com.sreshtha.jokex
 
 import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -74,6 +75,16 @@ class HomeActivity : AppCompatActivity() {
             Intent(this, MainActivity::class.java).also {
                 startActivity(it)
                 finish()
+            }
+            true
+        }
+
+        //opening github when source code btn is pressed.
+        binding.navView.menu.findItem(R.id.nav_source_code).setOnMenuItemClickListener {
+
+            Intent(Intent.ACTION_VIEW).also {
+                it.data = Uri.parse("https://github.com/sreshtha10/Jokex")
+                startActivity(it)
             }
             true
         }
