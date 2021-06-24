@@ -21,8 +21,6 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import com.sreshtha.jokex.databinding.ActivityHomeBinding
 
 
@@ -33,9 +31,6 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var drawer: DrawerLayout
 
 
-    private lateinit var storage: FirebaseStorage
-    private lateinit var storageReference: StorageReference
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +38,6 @@ class HomeActivity : AppCompatActivity() {
         val view = binding.root
         drawer = binding.drawerLayout
         setContentView(view)
-
-
-        storage = FirebaseStorage.getInstance()
-        storageReference = storage.reference
-
-
 
         init()
 
