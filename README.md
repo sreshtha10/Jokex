@@ -10,23 +10,34 @@ ___
 
 ## Screenshots
 
-<img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s1.jpg" width=30% height=20%>
-<img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s2.jpg" width=30% height=20%>
+<table>
+  <tr>
+    <td><img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s1.jpg" width=30% height=20%></td>
+    <td><img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s2.jpg" width=30% height=20%></td>
+  
+  </tr>
+    <tr>
+    <td><img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s3.jpg" width=30% height=20%></td>
+    <td><img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s4.jpg" width=30% height=20%></td>
 
-<img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s3.jpg" width=30% height=20%>
-<img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s4.jpg" width=30% height=20%>
+  </tr>
+    <tr>
+    <td><img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s5.jpg" width=30% height=20%></td>
+    <td><img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s6.jpg" width=30% height=20%></td>
+    
+  </tr>
+    <tr>
+    <td><img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s7.jpg" width=30% height=20%></td>
+    <td><img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s8.jpg" width=30% height=20%></td>
+  
+  </tr>
+    <tr>
+    <td><img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s9.jpg" width=30% height=20%></td>
+    <td><img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s10.jpg" width=30% height=20%></td>
+   
+  </tr>
+ </table>
 
-<img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s5.jpg" width=30% height=20%>
-<img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s6.jpg" width=30% height=20%>
-
-<img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s7.jpg" width=30% height=20%>
-<img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s8.jpg" width=30% height=20%>
-
-<img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s9.jpg" width=30% height=20%>
-<img src="https://github.com/sreshtha10/Jokex/blob/master/screenshots/s10.jpg" width=30% height=20%>
-
-
->
 ___
 
 
