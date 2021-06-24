@@ -57,9 +57,13 @@ class WriteAdapter(val jokesList: MutableList<UserJoke>) : RecyclerView.Adapter<
             ivDeleteJoke.setOnClickListener {
                 val setup = tvItemWriteJokeSetup.text.toString()
                 val punchline = tvItemWriteJokePunchline.text.toString()
+                readRef.child(joke.jokeId).removeValue()
+                val pos = jokesList.indexOf(joke)
+                jokesList.removeAt(pos)
 
+                this@WriteAdapter.notifyItemRemoved(pos)
+                this@WriteAdapter.notifyItemRangeChanged(pos,jokesList.size)
 
-                // delete joke
 
 
             }
