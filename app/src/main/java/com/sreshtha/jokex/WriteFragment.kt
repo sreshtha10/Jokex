@@ -10,7 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.firebase.storage.FirebaseStorage
 import com.sreshtha.jokex.databinding.FragmentWriteBinding
+
 
 class WriteFragment : Fragment() {
 
@@ -26,6 +28,8 @@ class WriteFragment : Fragment() {
         return binding.root
 
     }
+
+
 
 
 }
