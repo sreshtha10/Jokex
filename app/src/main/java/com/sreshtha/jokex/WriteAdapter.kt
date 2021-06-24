@@ -4,12 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.sreshtha.jokex.databinding.ItemReadJokeBinding
 import com.sreshtha.jokex.databinding.ItemWriteJokeBinding
 
-class WriteAdapter : RecyclerView.Adapter<WriteAdapter.WriteViewHolder>() {
+class WriteAdapter(val jokesList: MutableList<UserJoke>) : RecyclerView.Adapter<WriteAdapter.WriteViewHolder>() {
 
     inner class WriteViewHolder(val binding:ItemWriteJokeBinding):RecyclerView.ViewHolder(binding.root)
 
@@ -26,11 +24,6 @@ class WriteAdapter : RecyclerView.Adapter<WriteAdapter.WriteViewHolder>() {
 
     private val differ = AsyncListDiffer(this, diffCallBack)
 
-    var jokesList: MutableList<UserJoke>
-        get() = differ.currentList
-        set(value) {
-            differ.submitList(value)
-        }
 
 
 

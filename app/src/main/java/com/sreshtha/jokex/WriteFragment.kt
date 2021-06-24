@@ -53,7 +53,7 @@ class WriteFragment : Fragment() {
 
         binding = FragmentWriteBinding.inflate(inflater, container, false)
 
-        writeAdapter = WriteAdapter()
+        writeAdapter = WriteAdapter(jokeList)
         return binding.root
 
     }
@@ -121,7 +121,11 @@ class WriteFragment : Fragment() {
             dataSnapshot.children.forEach {
                 val key = it.key
                 val joke = dataSnapshot.child("$key").getValue(UserJoke::class.java)
-                jokeList.add(joke!!)
+
+                if(joke != null){
+                    jokeList.add(joke)
+                    writeAdapter.notifyItemInserted(jokeList.size-1)
+                }
 
                 /*
                 Toast.makeText(
