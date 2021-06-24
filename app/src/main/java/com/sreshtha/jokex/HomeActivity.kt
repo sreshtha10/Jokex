@@ -12,8 +12,12 @@ package com.sreshtha.jokex
 
 import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
@@ -21,7 +25,14 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.sreshtha.jokex.databinding.ActivityHomeBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 
 class HomeActivity : AppCompatActivity() {
@@ -29,6 +40,7 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var drawer: DrawerLayout
+
 
 
 
@@ -76,7 +88,6 @@ class HomeActivity : AppCompatActivity() {
             true
         }
 
-
     }
 
 
@@ -90,6 +101,7 @@ class HomeActivity : AppCompatActivity() {
 
 
     private fun init() {
+
 
         val toolbar = binding.toolBar
         setSupportActionBar(toolbar)
@@ -115,7 +127,6 @@ class HomeActivity : AppCompatActivity() {
                     true
             }
         }
-
 
     }
 
