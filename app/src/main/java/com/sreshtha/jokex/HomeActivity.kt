@@ -15,6 +15,7 @@ import android.content.res.Configuration
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
@@ -23,6 +24,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.sreshtha.jokex.databinding.ActivityHomeBinding
+import org.w3c.dom.Text
 
 class HomeActivity : AppCompatActivity() {
 
@@ -89,6 +91,11 @@ class HomeActivity : AppCompatActivity() {
             true
         }
 
+
+        //setting email to drawer
+        binding.navView.getHeaderView(0).findViewById<TextView>(R.id.tv_email_user).text = FirebaseAuth.getInstance().currentUser?.email
+
+
     }
 
 
@@ -131,6 +138,7 @@ class HomeActivity : AppCompatActivity() {
                     true
             }
         }
+
 
     }
 

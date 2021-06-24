@@ -63,13 +63,6 @@ class RegisterFragment : Fragment() {
         // registering user when user clicks btnRegister.
         binding.btnRegister.setOnClickListener {
             registerUser()
-            if (checkedIfLoggedIn()) {
-                Intent(context, HomeActivity::class.java).also {
-                    startActivity(it)
-                    activity?.finish()
-                }
-            }
-
         }
 
 
@@ -96,6 +89,11 @@ class RegisterFragment : Fragment() {
                                 "Failed",
                                 Toast.LENGTH_SHORT
                             ).show()
+                        } else {
+                            Intent(context, HomeActivity::class.java).also {
+                                startActivity(it)
+                                activity?.finish()
+                            }
                         }
                     }
                 } catch (e: Exception) {
