@@ -3,7 +3,7 @@
  */
 
 
-package com.sreshtha.jokex
+package com.sreshtha.jokex.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,7 +19,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.sreshtha.jokex.ui.models.UserJoke
 import com.sreshtha.jokex.databinding.FragmentWriteBinding
+import com.sreshtha.jokex.ui.adapters.WriteAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

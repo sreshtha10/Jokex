@@ -2,7 +2,7 @@
   Class to represent user created jokes which will be later stored on firebase
  */
 
-package com.sreshtha.jokex
+package com.sreshtha.jokex.ui.models
 
 import java.io.Serializable
 

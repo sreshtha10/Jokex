@@ -1,11 +1,12 @@
 /*
-    LoginFragment.kt is responsible for handling user-logins using FirebaseAuth.
+    RegisterFragment.kt is responsible for handling user-registrations using FirebaseAuth.
     It is a fragment created for MainActivity.kt
 
  */
 
 
-package com.sreshtha.jokex
+
+package com.sreshtha.jokex.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,7 +16,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
-import com.sreshtha.jokex.databinding.FragmentLoginBinding
+import com.sreshtha.jokex.R
+import com.sreshtha.jokex.databinding.FragmentRegisterBinding
+import com.sreshtha.jokex.ui.activities.HomeActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,11 +27,11 @@ import kotlinx.coroutines.withContext
 import java.lang.Exception
 
 
-class LoginFragment : Fragment() {
+class RegisterFragment : Fragment() {
 
-    //global variables
-    private lateinit var binding: FragmentLoginBinding
-    lateinit var auth: FirebaseAuth
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var binding: FragmentRegisterBinding
 
 
     override fun onCreateView(
@@ -36,64 +39,65 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        binding = FragmentLoginBinding.inflate(inflater, container, false)
+        binding = FragmentRegisterBinding.inflate(inflater, container, false)
 
         // getting firebase auth instance
         auth = FirebaseAuth.getInstance()
+
         return binding.root
+
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val loginFragment = LoginFragment()
 
-
-        // this switches to sign up (register) fragment
-        binding.tvGotoSignup.setOnClickListener {
-            val registerFragment = RegisterFragment()
+        // switching to log in fragment when user clicks tvGotoLogin
+        binding.tvGotoLogin.setOnClickListener {
             parentFragmentManager.beginTransaction().apply {
-                replace(R.id.flFragments, registerFragment)
+                replace(R.id.flFragments, loginFragment)
                 commit()
             }
         }
 
-        // getting user logged in
-        binding.btnLogin.setOnClickListener {
-            logInUser()
+
+        // registering user when user clicks btnRegister.
+        binding.btnRegister.setOnClickListener {
+            registerUser()
         }
 
 
     }
 
 
-    // function to handle the log in of the user
-    private fun logInUser() {
-        val email = binding.etEmail.text.toString()
-        val password = binding.etPassword.text.toString()
+    // function to handle the registration of the user
+    private fun registerUser() {
+        val email = binding.etEmailRegister.text.toString()
+        val password = binding.etPasswordRegister.text.toString()
+        val confirmPassword = binding.etConfirmPasswordRegister.text.toString()
 
-        if (email.isNotEmpty() && password.isNotEmpty()) {
+        if (email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty() && password.equals(
+                confirmPassword
+            )
+        ) {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-
-                    auth.signInWithEmailAndPassword(email, password).await()
-
+                    auth.createUserWithEmailAndPassword(email, password).await()
                     withContext(Dispatchers.Main) {
-                        if (checkedIfLoggedIn()) {
+                        if (!checkedIfLoggedIn()) {
                             Toast.makeText(
                                 context,
-                                "Success",
+                                "Failed",
                                 Toast.LENGTH_SHORT
                             ).show()
-
-                            //on successful log in, starting the home activity
+                        } else {
                             Intent(context, HomeActivity::class.java).also {
                                 startActivity(it)
                                 activity?.finish()
                             }
                         }
                     }
-
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {
                         Toast.makeText(
@@ -104,19 +108,24 @@ class LoginFragment : Fragment() {
                     }
                 }
             }
+        } else if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
 
-
+            Toast.makeText(
+                context,
+                "Empty fields !",
+                Toast.LENGTH_SHORT
+            ).show()
         } else {
             Toast.makeText(
-                activity,
-                "Empty Fields",
+                context,
+                "Passwords do not match !",
                 Toast.LENGTH_SHORT
             ).show()
         }
-
     }
 
-    //function to the check the logged in state of the user.
+
+    // function to check the logged in state of the user.
     private fun checkedIfLoggedIn(): Boolean {
         return auth.currentUser != null
     }

@@ -3,7 +3,7 @@
  */
 
 
-package com.sreshtha.jokex
+package com.sreshtha.jokex.ui.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

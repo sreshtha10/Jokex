@@ -7,7 +7,7 @@
 
 
 
-package com.sreshtha.jokex
+package com.sreshtha.jokex.ui.activities
 
 
 import android.content.Intent
@@ -23,8 +23,10 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import com.sreshtha.jokex.R
+import com.sreshtha.jokex.ui.fragments.ReadFragment
+import com.sreshtha.jokex.ui.fragments.WriteFragment
 import com.sreshtha.jokex.databinding.ActivityHomeBinding
-import org.w3c.dom.Text
 
 class HomeActivity : AppCompatActivity() {
 

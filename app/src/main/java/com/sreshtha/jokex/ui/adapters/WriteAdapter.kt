@@ -2,7 +2,7 @@
     Adapter for recycler view in the write fragment layout.
  */
 
-package com.sreshtha.jokex
+package com.sreshtha.jokex.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.sreshtha.jokex.ui.models.UserJoke
 import com.sreshtha.jokex.databinding.ItemWriteJokeBinding
 
 class WriteAdapter(val jokesList: MutableList<UserJoke>) : RecyclerView.Adapter<WriteAdapter.WriteViewHolder>() {
@@ -26,7 +27,7 @@ class WriteAdapter(val jokesList: MutableList<UserJoke>) : RecyclerView.Adapter<
     inner class WriteViewHolder(val binding:ItemWriteJokeBinding):RecyclerView.ViewHolder(binding.root)
 
     private val diffCallBack = object : DiffUtil.ItemCallback<UserJoke>() {
-        override fun areItemsTheSame(oldItem: UserJoke, newItem:UserJoke): Boolean {
+        override fun areItemsTheSame(oldItem: UserJoke, newItem: UserJoke): Boolean {
             return oldItem.setup == newItem.setup
 
         }

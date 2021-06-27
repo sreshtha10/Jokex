@@ -3,7 +3,7 @@
  */
 
 
-package com.sreshtha.jokex
+package com.sreshtha.jokex.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sreshtha.jokex.databinding.FragmentReadBinding
+import com.sreshtha.jokex.ui.adapters.JokesAdapter
+import com.sreshtha.jokex.ui.api.RetrofitInstance
 import retrofit2.HttpException
 import java.io.IOException
 

@@ -2,7 +2,7 @@
     Data Class to represent JSON data received from the API
  */
 
-package com.sreshtha.jokex
+package com.sreshtha.jokex.ui.models
 
 
 data class JokeData(

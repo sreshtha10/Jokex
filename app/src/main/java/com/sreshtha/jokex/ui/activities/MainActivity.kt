@@ -9,13 +9,15 @@ Once, the login or registration (using Firebase) is complete, the HomeActivity.k
 
 
 
-package com.sreshtha.jokex
+package com.sreshtha.jokex.ui.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import com.sreshtha.jokex.ui.fragments.LoginFragment
+import com.sreshtha.jokex.R
 import com.sreshtha.jokex.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

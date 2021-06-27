@@ -2,13 +2,14 @@
     Adapter for Recycler View
  */
 
-package com.sreshtha.jokex
+package com.sreshtha.jokex.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.sreshtha.jokex.ui.models.JokeData
 import com.sreshtha.jokex.databinding.ItemReadJokeBinding
 
 class JokesAdapter : RecyclerView.Adapter<JokesAdapter.JokesViewHolder>() {
